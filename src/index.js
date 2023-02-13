@@ -5,9 +5,13 @@ import { Login, Register, Activities, Routines, MyRoutines, Home} from './compon
 
 
 const App = ()=> {
+  const [routines, setRoutines] = useState([]);
   return (
     <div>
       <h1>Front End</h1>
+      <nav>
+        <h2>Login</h2>
+      </nav>
     </div>
   );
 };
