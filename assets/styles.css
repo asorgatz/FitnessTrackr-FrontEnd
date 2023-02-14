@@ -1,3 +1,33 @@
 body {
   font-family: verdana;
 }
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.left {
+  border: 1px solid black;
+  padding: 12px;
+  width: 33.3%;
+  height: 700px;
+}
+
+.mid {
+  border: 1px solid black;
+  border-right: none;
+  border-left: none;
+  padding: 12px;
+  width: 33.3%;
+  height: 700px;
+}
+
+.right {
+  border: 1px solid black;
+  padding: 12px;
+  width: 33.3%;
+  height: 700px;
+}
