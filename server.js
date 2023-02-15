@@ -7,6 +7,14 @@ app.use('/dist', express.static('dist'));
 app.use('/assets', express.static('assets'));
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, 'index.html')));
 
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'index.html'), function (err) {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, ()=> {
