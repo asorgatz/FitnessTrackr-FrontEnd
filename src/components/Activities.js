@@ -9,6 +9,16 @@ const Activities = (props) => {
           <h1>
               Activities ({activities.length})
           </h1>
+          <ul>
+            {activities.map( (activity) => {
+                return(
+                    <div key={activity.id}>
+                        <h3>{activity.name}</h3>
+                        <p className="indent">{activity.description}</p>
+                    </div>
+                );
+            })}
+            </ul>
           
       </div>
     )
