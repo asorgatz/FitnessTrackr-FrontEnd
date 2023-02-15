@@ -46,6 +46,26 @@ export const exchangeTokenForUser = async () => {
     };
 };
 
+export const register = async (ev) => {
+    ev.preventDefault
+    console.log("User has been registered")
+    const regURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+    })
+    const result = await regURL.json();
+    if(!result.success){
+        throw result.error;
+    }
+}
+
+
 export const login = async (ev) => {
     ev.preventDefault
     console.log('logged in')

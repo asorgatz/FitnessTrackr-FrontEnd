@@ -42,6 +42,7 @@ const App = () => {
 
       <div className='content'>
         <div className='left'>
+          <Register />
           <Login />
         </div>
         <div className='mid'>
