@@ -12,8 +12,8 @@ body {
 .left {
   border: 1px solid black;
   padding: 12px;
-  width: 33.3%;
-  height: 700px;
+  flex:1;
+  
 }
 
 .mid {
@@ -21,13 +21,17 @@ body {
   border-right: none;
   border-left: none;
   padding: 12px;
-  width: 33.3%;
-  height: 700px;
+  flex:2;
+  
 }
 
 .right {
   border: 1px solid black;
   padding: 12px;
-  width: 33.3%;
-  height: 700px;
+  flex:1;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
 }

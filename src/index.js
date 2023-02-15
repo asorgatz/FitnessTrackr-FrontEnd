@@ -19,17 +19,17 @@ const App = () => {
         <Link to="/activities">Activities</Link>
         <Link to="/login">Login/Register</Link>
       </nav>
+      <div className='content'>
+        <div className='left'>
+        </div>
+        <div className='mid'>
         <Routes>
           <Route path='/' element = {<h1>Home</h1>}/>
           <Route path='/routines' element = {<h1>Routines</h1>}/>
           <Route path='/activities' element = {<h1>Activities</h1>}/>
           <Route path='/login' element = {<h1>Login</h1>}/>
         </Routes>
-      <div className='content'>
-        <div className='left'>
-          <h1>Front End</h1>
         </div>
-        <div className='mid'></div>
         <div className='right'></div>
       </div>
     </div>
