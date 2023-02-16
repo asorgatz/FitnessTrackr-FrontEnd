@@ -1,13 +1,55 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { fetchUserRoutines, exchangeTokenForUser} from '../api';
 
 
-const MyRoutines = () => {
 
+
+const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
+    
+    const getMyRoutines = async() => {
+        const routines = await fetchUserRoutines(user.username)
+        setMyRoutines(routines)
+    } 
+    
+    useEffect(() => {
+        if(user.username){
+            getMyRoutines()
+        }
+    }, [user])
+
+    console.log(myRoutines)
     return(
-        <h1>
-            Home
-        </h1>
-        
+      <div>
+          <h1>
+              My Routines ({myRoutines.length})
+          </h1>
+          <ul>
+            {myRoutines.map( (routine) => {
+                return(
+                    <div key={routine.id}>
+                        <h3>{routine.name}</h3>
+                        <p className="indent">{routine.goal}</p>
+                        <p className="indent"> By: {routine.creatorName}</p>
+                       
+                       
+                        {routine.activities.map( (activity) => {
+                            return(<div key={activity.id}>
+                                <p className="indent">activities:{activity.name}</p>
+                                <p className="indent">{activity.description}</p>
+                                <p className="indent">{activity.duration}</p>
+                                <p className="indent">{activity.count}</p>
+                                </div>
+                            )
+                        } 
+                      
+
+                        )}
+                    </div>
+                );
+            })}
+            </ul>  
+          
+      </div>
     )
 }
 

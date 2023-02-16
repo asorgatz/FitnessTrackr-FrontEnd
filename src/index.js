@@ -20,8 +20,8 @@ const App = () => {
   const [user, setUser] = useState({})
   const [routines, setRoutines] = useState([])
   const [activities, setActivities] = useState([])
-
-  
+  const [myRoutines, setMyRoutines] = useState([])
+   
   const getRoutines = async ()=>{
     const newRoutines = await fetchRoutines()
     setRoutines(newRoutines)
@@ -31,9 +31,9 @@ const App = () => {
     const newActivities = await fetchActivities()
     setActivities(newActivities)
   }
-  const token = window.localStorage.getItem('token');
+
   const getUser = async ()=>{
-    if(token){
+    if(window.localStorage.getItem('token')){
       const newUser = await exchangeTokenForUser()
       setUser(newUser)
     } else {
@@ -51,7 +51,7 @@ const App = () => {
     getRoutines()
     getActivities()
     getUser()
-  },[token])
+  },[])
 
 
 
@@ -71,7 +71,7 @@ const App = () => {
           <Route path='/' element = {<h1>Home</h1>}/>
           <Route path='/routines' element = {<Routines routines={routines}/>}/>
           <Route path='/activities' element = {<Activities activities={activities}/>}/>
-          <Route path='/myroutines' element = {<MyRoutines/>}/>
+          <Route path='/myroutines' element = {<MyRoutines user={user} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/>}/>
         </Routes>
         </div>
         <div className='right'> {<CreateActivity CreateActivity={CreateActivity}/>} </div>

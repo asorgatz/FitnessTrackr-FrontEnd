@@ -29,6 +29,23 @@ export const fetchActivities = async () => {
 
 }
 
+export const fetchUserRoutines = async (username) => {
+    const token = window.localStorage.getItem('token');
+    try {
+        const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+          })
+        const result = await response.json()
+        console.log(result)
+        return result
+    } catch (error) {
+        throw error
+    }
+}
+
 //Untested 
 export const exchangeTokenForUser = async () => {
     const token = window.localStorage.getItem('token');

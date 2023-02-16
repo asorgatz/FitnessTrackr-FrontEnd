@@ -9,7 +9,10 @@ const Login = (props) => {
     return (
         <div>
             <h3>Login</h3>
-            <form onSubmit = { async (ev) => {const user = await login(ev, username, password); setUser(user) }} >
+            <form onSubmit = { async (ev) => {
+                const user = await login(ev, username, password);
+                setUser(user.user); 
+                }} >
             
             <input 
             placeholder='username'
