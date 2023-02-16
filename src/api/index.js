@@ -46,47 +46,47 @@ export const exchangeTokenForUser = async () => {
     };
 };
 
-export const register = async (ev) => {
-    ev.preventDefault
-    console.log("User has been registered")
-    const regURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password
+export const register = async (ev, username, password) => {
+    try {
+        ev.preventDefault()
+        const regURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
         })
-    })
-    const result = await regURL.json();
-    if(!result.success){
-        throw result.error;
+        const result = await regURL.json();
+        console.log("user: ", result)
+    } catch (error) {
+        throw error
     }
 }
 
 
-export const login = async (ev) => {
-    ev.preventDefault
-    console.log('logged in')
-    const logURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
-        method:"POST",    
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            user: {
-              username: username,
-              password: password
-            }
-          })
-    })
-    const result = await logURL.json();
-    if(!result.success){
-        throw result.error
+export const login = async (ev, username, password) => {
+    try {
+        ev.preventDefault()
+        const logURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/login', {
+            method:"POST",    
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                    username:username,
+                    password:password
+            })
+        })
+        const result = await logURL.json();
+        const token = result.token;
+        window.localStorage.setItem('token', token)
+        console.log("user: ", result)
+    } catch (error) {
+        throw error
     }
-    const token = result.data.token;
-    window.localStorage.setItem('token', token)
 }
 
 export const logout = () => {

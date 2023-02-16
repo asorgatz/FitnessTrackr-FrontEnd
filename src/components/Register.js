@@ -6,21 +6,23 @@ const Register = () => {
     const [password, setPassword] = useState('');
 
     return(
-        <form onSubmit = { register } >
-            <h3>Register</h3>
+      <div>
+        <h3>Register</h3>
+          <form onSubmit = { async (ev) => await register(ev, username, password) } >
             <input 
               placeholder='username' 
               value={ username } 
               onChange={ ev => setUsername(ev.target.value) } 
-            />
+              />
             <input 
               placeholder='password'
               type='password'
               value={ password } 
               onChange={ ev => setPassword(ev.target.value) }
-            />
+              />
             <button>Register</button>
         </form>
+      </div>
     )
 }
 
