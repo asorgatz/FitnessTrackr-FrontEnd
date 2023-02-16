@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import { fetchRoutines, fetchActivities, login, exchangeTokenForUser } from "./api";
-import CreateActivity from "./components/createActivity";
+
 import {
   Login,
   Register,
@@ -10,6 +10,9 @@ import {
   Routines,
   MyRoutines,
   Home,
+  User,
+  CreateActivity,
+  CreateRoutine
 } from "./components/index";
 
 
@@ -48,9 +51,7 @@ const App = () => {
 
       <div className='content'>
         <div className='left'>
-          { !user.id ? <div>
-          <Register />
-          <Login /> </div>: null } 
+          { user.id ? <User user={user}/> : <div> <Register /> <Login /> </div>}
         </div>
         <div className='mid'>
         <nav>
@@ -61,6 +62,7 @@ const App = () => {
           <Route path='/' element = {<h1>Home</h1>}/>
           <Route path='/routines' element = {<Routines routines={routines}/>}/>
           <Route path='/activities' element = {<Activities activities={activities}/>}/>
+          <Route path='/myroutines' element = {<MyRoutines/>}/>
         </Routes>
         </div>
         <div className='right'> {<CreateActivity CreateActivity={CreateActivity}/>} </div>
