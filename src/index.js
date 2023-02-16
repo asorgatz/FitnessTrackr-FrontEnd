@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
 import { fetchRoutines, fetchActivities, login, exchangeTokenForUser } from "./api";
+import CreateActivity from "./components/createActivity";
 import {
   Login,
   Register,
@@ -57,7 +58,7 @@ const App = () => {
           <Route path='/activities' element = {<Activities activities={activities}/>}/>
         </Routes>
         </div>
-        <div className='right'></div>
+        <div className='right'> {<CreateActivity CreateActivity={CreateActivity}/>} </div>
       </div>
     </div>
   );
