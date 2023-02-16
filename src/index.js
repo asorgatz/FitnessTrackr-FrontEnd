@@ -14,6 +14,7 @@ import {
 
 
 const App = () => {
+  const [user, setUser] = useState({})
   const [routines, setRoutines] = useState([])
   const [activities, setActivities] = useState([])
 
@@ -28,14 +29,17 @@ const App = () => {
     setActivities(newActivities)
   }
 
+  const getUser = async ()=>{
+    const newUser = await exchangeTokenForUser()
+    setUser(newUser)
+  }
 
 
   useEffect(()=> {
     getRoutines()
     getActivities()
-    exchangeTokenForUser()
+    getUser()
   },[])
-
 
 
 
@@ -44,8 +48,9 @@ const App = () => {
 
       <div className='content'>
         <div className='left'>
+          { !user.id ? <div>
           <Register />
-          <Login />
+          <Login /> </div>: null } 
         </div>
         <div className='mid'>
         <nav>
