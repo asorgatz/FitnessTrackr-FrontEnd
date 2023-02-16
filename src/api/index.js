@@ -32,7 +32,7 @@ export const fetchActivities = async () => {
 //Untested 
 export const exchangeTokenForUser = async () => {
     const token = window.localStorage.getItem('token');
-
+console.log(token)
     if(token){
         const response = fetch('http://fitnesstrac-kr.herokuapp.com/api/users/me', {
             headers: {
@@ -42,7 +42,8 @@ export const exchangeTokenForUser = async () => {
         })
         const result = await response.json()
         console.log(result)
-        //return result
+        return result
+        
     };
 };
 

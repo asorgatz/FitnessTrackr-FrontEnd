@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Link, Routes, Route } from "react-router-dom";
-import { fetchRoutines, fetchActivities, login } from "./api";
+import { fetchRoutines, fetchActivities, login, exchangeTokenForUser } from "./api";
 import {
   Login,
   Register,
@@ -32,6 +32,7 @@ const App = () => {
   useEffect(()=> {
     getRoutines()
     getActivities()
+    exchangeTokenForUser()
   },[])
 
 
