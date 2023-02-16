@@ -7,7 +7,7 @@ const CreateRoutine = () => {
 
     return(
         <h1>
-            Home
+            Create Routine
         </h1>
         
     )

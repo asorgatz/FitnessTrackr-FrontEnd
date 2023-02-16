@@ -7,7 +7,7 @@ const [description, setDescription] = useState('')
 
     return(
  <form className='createActivity' onSubmit={ (ev) => createActivity(ev, name, description) }>
-    <h3>Create a Activity</h3>
+    <h3>Create an Activity</h3>
                 <input 
                     placeholder='name'
                     value={ name } 
