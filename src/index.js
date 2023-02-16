@@ -31,18 +31,27 @@ const App = () => {
     const newActivities = await fetchActivities()
     setActivities(newActivities)
   }
-
+  const token = window.localStorage.getItem('token');
   const getUser = async ()=>{
-    const newUser = await exchangeTokenForUser()
-    setUser(newUser)
+    if(token){
+      const newUser = await exchangeTokenForUser()
+      setUser(newUser)
+    } else {
+      setUser({})
+    }
   }
 
+  const logout = () => {
+    window.localStorage.removeItem('token');
+    setUser({});
+    console.log(user)
+  }
 
   useEffect(()=> {
     getRoutines()
     getActivities()
     getUser()
-  },[])
+  },[token])
 
 
 
@@ -51,7 +60,7 @@ const App = () => {
 
       <div className='content'>
         <div className='left'>
-          { user.id ? <User user={user}/> : <div> <Register /> <Login /> </div>}
+          { user.id ? <div> <User user={user}/> <button onClick={ () => {logout()} }>Logout</button></div> : <div> <Register /> <Login setUser={setUser}/> </div>}
         </div>
         <div className='mid'>
         <nav>

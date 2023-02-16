@@ -32,7 +32,7 @@ export const fetchActivities = async () => {
 //Untested 
 export const exchangeTokenForUser = async () => {
     const token = window.localStorage.getItem('token');
-
+    
     if(token){
         const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/me', {
             headers: {
@@ -45,6 +45,30 @@ export const exchangeTokenForUser = async () => {
         return result
     };
 };
+
+export const createActivity = async (ev, name, description) => {
+    try {
+        ev.preventDefault()
+        const token = window.localStorage.getItem('token')
+        console.log(token)
+        const logURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/activities', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ token }`
+            },
+            body: JSON.stringify({
+              name: name,
+              description: description
+            })
+          })
+          const result = await logURL.json()
+          console.log(result)
+    } catch (error) {
+        throw error
+
+    }
+}
 
 export const register = async (ev, username, password) => {
     try {
@@ -84,12 +108,9 @@ export const login = async (ev, username, password) => {
         const token = result.token;
         window.localStorage.setItem('token', token)
         console.log("user: ", result)
+        return result
     } catch (error) {
         throw error
     }
 }
 
-export const logout = () => {
-    window.localStorage.removeItem('token');
-    setUser({});
-  }

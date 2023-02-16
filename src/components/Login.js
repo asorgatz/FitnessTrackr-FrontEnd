@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import { login } from '../api'
 
-const Login = () => {
+const Login = (props) => {
+    const setUser = props.setUser
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     return (
         <div>
             <h3>Login</h3>
-            <form onSubmit = { async (ev) => await login(ev, username, password) } >
+            <form onSubmit = { async (ev) => {const user = await login(ev, username, password); setUser(user) }} >
             
             <input 
             placeholder='username'
