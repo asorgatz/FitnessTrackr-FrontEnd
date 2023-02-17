@@ -102,6 +102,7 @@ export const register = async (ev, username, password) => {
         })
         const result = await regURL.json();
         console.log("user: ", result)
+        return result;
     } catch (error) {
         throw error
     }

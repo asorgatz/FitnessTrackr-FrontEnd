@@ -7,7 +7,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const ifError = async (user) => {
+  const ifError = (user) => {
     if (!user.token) {
       setError(user);
     }
