@@ -127,7 +127,7 @@ export const login = async (ev, username, password) => {
         console.log("user: ", result)
         return result
     } catch (error) {
-        throw error
+        console.error(error)
     }
 }
 
