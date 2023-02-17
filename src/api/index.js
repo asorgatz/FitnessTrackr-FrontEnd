@@ -87,6 +87,31 @@ export const createActivity = async (ev, name, description) => {
     }
 }
 
+
+export const createRoutine = async (ev, activityId, count, duration) => {
+try {
+    ev.preventDefault()
+        const token = window.localStorage.getItem('token')
+        console.log(token)
+        const logURL = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines/6/activities', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ token }`
+            },
+            body: JSON.stringify({
+              activityId: activityId, 
+              count: count,
+              duration:duration
+            })
+          })
+          const result = await logURL.json()
+          console.log(result)
+    
+} catch (error) {
+    
+}
+}
 export const register = async (ev, username, password) => {
     try {
         ev.preventDefault()
