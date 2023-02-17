@@ -74,7 +74,9 @@ const App = () => {
           <Route path='/myroutines' element = {<MyRoutines user={user} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/>}/>
         </Routes>
         </div>
-        <div className='right'> {<CreateActivity CreateActivity={CreateActivity}/>} </div>
+        <div className='right'> 
+          { user.id ? <div><CreateActivity CreateActivity={CreateActivity}/></div> : null }
+        </div>
       </div>
     </div>
   );
