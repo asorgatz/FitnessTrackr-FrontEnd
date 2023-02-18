@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { fetchUserRoutines } from '../api';
+import { deleteRoutine, fetchUserRoutines } from '../api';
 
 
 
@@ -29,6 +29,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
                         <h3>{routine.name}</h3>
                         <p className="indent">{routine.goal}</p>
                         <p className="indent"> By: {routine.creatorName}</p>
+                        <button onClick={()=> deleteRoutine(routine.id)}>Delete</button>
                        
                        
                         {routine.activities.map( (activity) => {
