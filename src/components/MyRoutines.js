@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { fetchUserRoutines, exchangeTokenForUser} from '../api';
+import { fetchUserRoutines } from '../api';
 
 
 
@@ -17,7 +17,6 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
         }
     }, [user])
 
-    console.log(myRoutines)
     return(
       <div>
           <h1>

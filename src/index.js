@@ -44,7 +44,6 @@ const App = () => {
   const logout = () => {
     window.localStorage.removeItem('token');
     setUser({});
-    console.log(user)
   }
 
   useEffect(()=> {

@@ -1,41 +1,36 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { createRoutine } from "../api";
 
-
-
 const CreateRoutine = () => {
-    const [activityId, setActivityId] = useState('')
-    const [count, setCount] = useState('')
-    const [duration, setDuration] = useState('')
-    return(
+  const [name, setName] = useState("");
+  const [goal, setGoal] = useState("");
+  const [isPublic, setIsPublic] = useState("");
 
-    <form className='createRoutine' onSubmit={ (ev) => createActivity(ev, activityId, count, duration) }>
-    <h3>Create Your Routines</h3>
-                <input 
-                    placeholder='activityId'
-                    value={ activityId } 
-                    onChange={ ev => setActivityId(ev.target.value)} 
-                />
-                <input 
-                    placeholder='count'
-                    value={ count } 
-                    onChange={ ev => setCount(ev.target.value)} 
-                />
-                 <input 
-                    placeholder='duration'
-                    value={ duration } 
-                    onChange={ ev => setDuration(ev.target.value)} 
-                />
+  return (
+    <form
+      className="createRoutine"
+      onSubmit={(ev) => createRoutine(ev, name, goal, isPublic)}
+    >
+      <h3>Create Your Routines</h3>
+      <input
+        placeholder="name"
+        value={name}
+        onChange={(ev) => setName(ev.target.value)}
+      />
+      <input
+        placeholder="goal"
+        value={goal}
+        onChange={(ev) => setGoal(ev.target.value)}
+      />
+      <input
+        placeholder="isPublic?"
+        value={isPublic}
+        onChange={(ev) => setIsPublic(ev.target.value)}
+      />
 
-                <button>Create Routines</button>
- </form>
-    )
-}
+      <button>Create Routines</button>
+    </form>
+  );
+};
 
-
-
-
-
-
-
-export default CreateRoutine
+export default CreateRoutine;
