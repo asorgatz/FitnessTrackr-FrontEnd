@@ -138,7 +138,7 @@ export const createRoutine = async (ev, name, goal, isPublic) => {
     try {
         ev.preventDefault()
         const token = window.localStorage.getItem('token')
-        console.log(token)
+        
         const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/routines', {
             method: "POST",
             headers: {
@@ -152,15 +152,15 @@ export const createRoutine = async (ev, name, goal, isPublic) => {
             })
         });
         const result = await response.json()
-        console.log(result)
+        
         return result;
     } catch (error) {
         console.error(error);
     };
 };
 
-//Unfinished need to test after createRoutines working
-export const deleteRoutine = async (routineId) => {
+
+export const deleteRoutine = async (routineId, getMyRoutines, myRoutines, setMyRoutines) => {
     try {
         const token = window.localStorage.getItem('token');
         const response = await fetch(
@@ -174,7 +174,6 @@ export const deleteRoutine = async (routineId) => {
         }
       );
       const result = await response.json();
-      console.log(result)
       return result;
     } catch (error) {
         console.error(error);

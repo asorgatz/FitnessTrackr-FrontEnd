@@ -29,7 +29,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
                         <h3>{routine.name}</h3>
                         <p className="indent">{routine.goal}</p>
                         <p className="indent"> By: {routine.creatorName}</p>
-                        <button onClick={()=> deleteRoutine(routine.id)}>Delete</button>
+                        <button onClick={()=> {deleteRoutine(routine.id), getMyRoutines, myRoutines, setMyRoutines}}>Delete</button>
                        
                        
                         {routine.activities.map( (activity) => {
