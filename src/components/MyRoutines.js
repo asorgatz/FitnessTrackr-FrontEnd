@@ -28,7 +28,6 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
                     <div key={routine.id}>
                         <h3>{routine.name}</h3>
                         <p className="indent">{routine.goal}</p>
-                        <p className="indent"> By: {routine.creatorName}</p>
                         <button onClick={()=> {deleteRoutine(routine.id), getMyRoutines, myRoutines, setMyRoutines}}>Delete</button>
                        
                        
