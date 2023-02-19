@@ -37,10 +37,8 @@ const Login = (props) => {
           value={password}
           onChange={(ev) => setPassword(ev.target.value)}
         />
-        <div>
           <button>Login</button>
           {error.message && <p>{error.message}</p>}
-        </div>
       </form>
     </div>
   );

@@ -54,3 +54,8 @@ nav{
 .doubleInd {
   text-indent: 40px;
 }
+
+form{
+  display: flex;
+  flex-direction: column;
+}
