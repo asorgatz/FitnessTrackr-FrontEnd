@@ -30,14 +30,16 @@ const CreateRoutine = ({myRoutines, setMyRoutines}) => {
         value={goal}
         onChange={(ev) => setGoal(ev.target.value)}
       />
+      <span>
+        <label>Public?</label>
       <input
         type="checkbox"
         id="willDeliver" 
         name="willDeliver"
         value={isPublic}
         onChange={(ev) => setIsPublic(ev.target.checked)}
-      />
-    <label>Public?</label>
+        />
+        </span>
       <button onClick={submitRoutine} disabled={!name || !goal }>Create Routines</button>
     </form>
   );
