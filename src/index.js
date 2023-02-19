@@ -74,7 +74,7 @@ const App = () => {
         </Routes>
         </div>
         <div className='right'> 
-          { user.id ? <div><CreateActivity CreateActivity={CreateActivity}/></div> : null }
+          { user.id ? <div><CreateActivity CreateActivity={CreateActivity}/></div> : <h3>Must log in to create activities and routines!</h3> }
           { user.id ? <div><CreateRoutine CreateRoutine={CreateRoutine} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/></div> : null }
         </div>
       </div>
