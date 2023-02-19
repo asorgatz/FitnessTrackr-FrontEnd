@@ -39,3 +39,18 @@ nav{
 .indent {
   text-indent: 25px;
 }
+
+.routDiv{
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.actDiv{
+  border: 1px solid black;
+  padding: 1rem;
+}
+
+.doubleInd {
+  text-indent: 40px;
+}
