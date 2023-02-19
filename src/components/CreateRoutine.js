@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { createRoutine } from "../api";
 
-const CreateRoutine = () => {
+const CreateRoutine = ({myRoutines, setMyRoutines}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  const [isPublic, setIsPublic] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+
+  const submitRoutine = async (ev) => {
+    ev.preventDefault()
+    let routineData = await createRoutine(ev, name, goal, isPublic);
+    routineData.activities = []
+    setMyRoutines([...myRoutines, routineData])
+    console.log(myRoutines)
+  }
 
   return (
     <form
       className="createRoutine"
-      onSubmit={(ev) => createRoutine(ev, name, goal, isPublic)}
+      onSubmit={(ev) => submitRoutine}
     >
       <h3>Create Your Routines</h3>
       <input
@@ -23,12 +31,14 @@ const CreateRoutine = () => {
         onChange={(ev) => setGoal(ev.target.value)}
       />
       <input
-        placeholder="isPublic?"
+        type="checkbox"
+        id="willDeliver" 
+        name="willDeliver"
         value={isPublic}
-        onChange={(ev) => setIsPublic(ev.target.value)}
+        onChange={(ev) => setIsPublic(ev.target.checked)}
       />
-
-      <button>Create Routines</button>
+    <label>Public?</label>
+      <button onClick={submitRoutine} disabled={!name || !goal }>Create Routines</button>
     </form>
   );
 };
