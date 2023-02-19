@@ -9,7 +9,14 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
     const getMyRoutines = async() => {
         const routines = await fetchUserRoutines(user.username)
         setMyRoutines(routines)
-    } 
+    }
+    
+    const handleDelete = async (ev, routineId) => {
+        ev.preventDefault();
+        const delRoutine = await deleteRoutine(routineId)
+        console.log(delRoutine)
+        getMyRoutines();
+    }
     
     useEffect(() => {
         if(user.username){
@@ -29,7 +36,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
                     <div className="routDiv" key={routine.id}>
                         <h3>{routine.name}</h3>
                         <p className="indent">{routine.goal}</p>
-                        <button onClick={()=> {deleteRoutine(routine.id), getMyRoutines, myRoutines, setMyRoutines}}>Delete</button>
+                        <button onClick={(ev)=> handleDelete(ev, routine.id)}>Delete</button>
                        
                        
                         {routine.activities.map( (activity) => {
