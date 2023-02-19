@@ -9,6 +9,7 @@ const Activities = (props) => {
           <h1>
               Activities ({activities.length})
           </h1>
+          <hr></hr>
           <ul>
             {activities.map( (activity) => {
                 return(

@@ -6,7 +6,7 @@ const [name, setName] = useState('')
 const [description, setDescription] = useState('')
 
     return(
- <form className='createActivity' onSubmit={ (ev) => createActivity(ev, name, description) }>
+ <form className='createActivity'>
     <h3>Create an Activity</h3>
                 <input 
                     placeholder='name'
@@ -19,7 +19,7 @@ const [description, setDescription] = useState('')
                     onChange={ ev => setDescription(ev.target.value)} 
                 />
 
-                <button>Create Activity</button>
+                <button onClick={ (ev) => createActivity(ev, name, description) } disabled={ !name || !description }>Create Activity</button>
  </form>
     )
 }
