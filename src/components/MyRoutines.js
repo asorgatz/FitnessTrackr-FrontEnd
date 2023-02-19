@@ -22,10 +22,11 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
           <h1>
               My Routines ({myRoutines.length})
           </h1>
+          <hr></hr>
           <ul>
             {myRoutines.map( (routine) => {
                 return(
-                    <div key={routine.id}>
+                    <div className="routDiv" key={routine.id}>
                         <h3>{routine.name}</h3>
                         <p className="indent">{routine.goal}</p>
                         <button onClick={()=> {deleteRoutine(routine.id), getMyRoutines, myRoutines, setMyRoutines}}>Delete</button>
@@ -34,9 +35,9 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
                         {routine.activities.map( (activity) => {
                             return(<div key={activity.id}>
                                 <p className="indent">activities:{activity.name}</p>
-                                <p className="indent">{activity.description}</p>
-                                <p className="indent">{activity.duration}</p>
-                                <p className="indent">{activity.count}</p>
+                                <p className="doubleInd">{activity.description}</p>
+                                <p className="doubleInd">{activity.duration}</p>
+                                <p className="doubleInd">{activity.count}</p>
                                 </div>
                             )
                         } 
