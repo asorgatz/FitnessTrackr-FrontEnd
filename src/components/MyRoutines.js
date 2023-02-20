@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine, removeActivityFromRoutine } from '../api';
 import EditRoutine from './EditRoutine';
+import EditActivity from './EditActivity';
 
 
 
@@ -79,6 +80,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
                                 <p className="doubleInd">{activity.description}</p>
                                 <p className="doubleInd">{activity.duration}</p>
                                 <p className="doubleInd">{activity.count}</p>
+                                <EditActivity getMyRoutines={getMyRoutines} activityId={activity.routineActivityId}/>
                                 <button onClick={()=>handleDeleteActivity(activity.routineActivityId)}>Remove Activity</button>
                                 </div>
                             )
