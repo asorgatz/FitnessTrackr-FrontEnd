@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine } from '../api';
+import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine, removeActivityFromRoutine } from '../api';
+import EditRoutine from './EditRoutine';
 
 
 
@@ -27,6 +28,13 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
        await attachActivityToRoutine({routineId, activityId, count, duration });
        getMyRoutines(); 
     }
+
+    const handleDeleteActivity = async (activityId) => {
+        await removeActivityFromRoutine(activityId);
+        getMyRoutines();
+    }
+
+
     
     useEffect(() => {
         if(user.username){
@@ -46,6 +54,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
                     <div className="routDiv" key={routine.id}>
                         <h3>Routine: {routine.name}</h3>
                         <p className="indent">Goal: {routine.goal}</p>
+                        <EditRoutine getMyRoutines={getMyRoutines} routineId={routine.id}/>
                         <button onClick={(ev)=> handleDelete(ev, routine.id)}>Delete</button>
                         <form>
                             <select onChange={(ev)=> setActivity(ev.target.value)}>
@@ -70,6 +79,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
                                 <p className="doubleInd">{activity.description}</p>
                                 <p className="doubleInd">{activity.duration}</p>
                                 <p className="doubleInd">{activity.count}</p>
+                                <button onClick={()=>handleDeleteActivity(activity.routineActivityId)}>Remove Activity</button>
                                 </div>
                             )
                         } 
