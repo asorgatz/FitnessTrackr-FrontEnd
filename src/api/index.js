@@ -200,8 +200,13 @@ export const deleteRoutine = async (
   }
 };
 
-export const attachActivityToRoutine = async ({routineId, activityId, count, duration}) => {
-  const token = window.localStorage.getItem("token")
+export const attachActivityToRoutine = async ({
+  routineId,
+  activityId,
+  count,
+  duration,
+}) => {
+  const token = window.localStorage.getItem("token");
   const response = await fetch(
     `http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}/activities`,
     {
@@ -222,14 +227,45 @@ export const attachActivityToRoutine = async ({routineId, activityId, count, dur
 };
 
 export const removeActivityFromRoutine = async (activityId) => {
-  const token = window.localStorage.getItem("token")
-  const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${activityId}`, {
-    method: "DELETE",
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+  const token = window.localStorage.getItem("token");
+  const response = await fetch(
+    `http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${activityId}`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     }
-  })
+  );
   const result = await response.json();
-  console.log(result)
-}
+  console.log(result);
+};
+
+export const editRoutine = async ({
+  token,
+  name,
+  goal,
+  isPublic,
+  routineId,
+}) => {
+  try {
+    const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routines/${routineId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        goal: goal,
+        isPublic: isPublic,
+      }),
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error(error);
+  }
+};
