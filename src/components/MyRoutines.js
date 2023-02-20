@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine } from '../api';
+import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine, removeActivityFromRoutine } from '../api';
 
 
 
@@ -27,6 +27,13 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
        await attachActivityToRoutine({routineId, activityId, count, duration });
        getMyRoutines(); 
     }
+
+    const handleDeleteActivity = async (activityId) => {
+        await removeActivityFromRoutine(activityId);
+        getMyRoutines();
+    }
+
+
     
     useEffect(() => {
         if(user.username){
@@ -70,6 +77,7 @@ const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) =>
                                 <p className="doubleInd">{activity.description}</p>
                                 <p className="doubleInd">{activity.duration}</p>
                                 <p className="doubleInd">{activity.count}</p>
+                                <button onClick={()=>handleDeleteActivity(activity.routineActivityId)}>Remove Activity</button>
                                 </div>
                             )
                         } 

@@ -220,3 +220,16 @@ export const attachActivityToRoutine = async ({routineId, activityId, count, dur
   const result = await response.json();
   return result;
 };
+
+export const removeActivityFromRoutine = async (activityId) => {
+  const token = window.localStorage.getItem("token")
+  const response = await fetch(`http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${activityId}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+  const result = await response.json();
+  console.log(result)
+}
