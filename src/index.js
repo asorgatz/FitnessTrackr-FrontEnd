@@ -70,7 +70,7 @@ const App = () => {
           <Route path='/' element = {<h1>Home</h1>}/>
           <Route path='/routines' element = {<Routines routines={routines}/>}/>
           <Route path='/activities' element = {<Activities activities={activities}/>}/>
-          <Route path='/myroutines' element = {<MyRoutines user={user} myRoutines={myRoutines} setMyRoutines={setMyRoutines}/>}/>
+          <Route path='/myroutines' element = {<MyRoutines user={user} myRoutines={myRoutines} setMyRoutines={setMyRoutines} activities={activities}/>}/>
         </Routes>
         </div>
         <div className='right'> 

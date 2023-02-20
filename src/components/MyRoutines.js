@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { deleteRoutine, fetchUserRoutines } from '../api';
+import { deleteRoutine, fetchUserRoutines, attachActivityToRoutine } from '../api';
 
 
 
 
-const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
+const MyRoutines = ({user, myRoutines, setMyRoutines, activities , routines}) => {
+    const [count, setCount] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [activity, setActivity] = useState(null)
+    console.log(activity)
+    
     
     const getMyRoutines = async() => {
         const routines = await fetchUserRoutines(user.username)
@@ -16,6 +21,11 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
         const delRoutine = await deleteRoutine(routineId)
         console.log(delRoutine)
         getMyRoutines();
+    }
+
+    const handleAttachActivity = async ({routineId, activity: activityId, count, duration}) => {
+       await attachActivityToRoutine({routineId, activityId, count, duration });
+       getMyRoutines(); 
     }
     
     useEffect(() => {
@@ -34,9 +44,24 @@ const MyRoutines = ({user, myRoutines, setMyRoutines}) => {
             {myRoutines.map( (routine) => {
                 return(
                     <div className="routDiv" key={routine.id}>
-                        <h3>{routine.name}</h3>
-                        <p className="indent">{routine.goal}</p>
+                        <h3>Routine: {routine.name}</h3>
+                        <p className="indent">Goal: {routine.goal}</p>
                         <button onClick={(ev)=> handleDelete(ev, routine.id)}>Delete</button>
+                        <form>
+                            <select onChange={(ev)=> setActivity(ev.target.value)}>
+                                {
+                                    activities.map((activity) => {
+                                        return (<option key={activity.id} value={activity.id}>{activity.name}</option>)
+                                    })
+                                }
+                            </select>
+                            <input name="count" value={count} onChange={(ev) => setCount(ev.target.value)}/>
+                            <input name="duration" value={duration} onChange={(ev) => setDuration(ev.target.value)}/>
+                        </form>
+                        <button onClick={(ev)=> {
+                            ev.preventDefault();
+                            handleAttachActivity({routineId: routine.id, count, duration, activity})
+                            }}>Add Activity</button>
                        
                        
                         {routine.activities.map( (activity) => {
